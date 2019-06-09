@@ -1,0 +1,30 @@
+{
+  "name": "postcss-group",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uustoboy/postcss-group.git"
+  },
+  "author": "uustoboy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uustoboy/postcss-group/issues"
+  },
+  "homepage": "https://github.com/uustoboy/postcss-group#readme",
+  "dependencies": {
+    "group-css-properties": "^1.0.0",
+    "object-merge": "^2.5.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "gulp": "^4.0.2",
+    "gulp-eslint": "^5.0.0",
+    "gulp-mocha": "^6.0.0",
+    "postcss": "^7.0.16"
+  }
+}
