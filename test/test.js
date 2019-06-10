@@ -6,8 +6,7 @@ var plugin = require('../');
 var test = function (input, output, opts, done) {
     postcss([ plugin(opts) ]).process(input).then(function (result) {
 
-
-        expect(result.css).to.eql(output);
+        expect(result.css).to.equal(output);
         expect(result.warnings()).to.be.empty;
         done();
     }).catch(function (error) {
@@ -15,8 +14,10 @@ var test = function (input, output, opts, done) {
     });
 };
 
-describe("postcss-group", function() {
-  it("handles background", function(done) {
-    test("h1 { flc: 12px 12px #fff; }", "h1 { font-size:12px;line-height:12px;color:#fff }", {}, done);
-  });
+describe('postcss-crip', function () {
+
+    it('handles background', function (done) {
+        test('h1 { flc: 12px 20px #000; }', 'h1 { font-size:12px; line-height:20px; color: #000; }', {}, done);
+    });
+
 });

@@ -1,23 +1,16 @@
-var gulp = require('gulp');
+const { src, dest, parallel } = require("gulp");
 
-var files = ['index.js', 'test/*.js', 'gulpfile.js'];
+var postcss = require("postcss");
 
-gulp.task('lint', function (done) {
-    var eslint = require('gulp-eslint');
-    return gulp.src(files)
-        .pipe(eslint())
-        .pipe(eslint.format())
-        .pipe(eslint.failAfterError()).on('error', done);
-});
+var plugin = require("./index");
 
-gulp.task('test', function (done) {
-    var mocha = require('gulp-mocha');
-    return gulp.src('test/*.js', { read: false })
-        .pipe(mocha()).on('error', done);
-});
+function add() {
+    postcss([plugin()])
+      .process("h1 { flcb:20px 20px #ccc; }")
+      .then(function(result) {
+        console.log(result);
+      })
+      .catch(function(error) {});
+}
 
-gulp.task('default', ['lint', 'test']);
-
-gulp.task('watch', function() {
-    gulp.watch(files, ['lint', 'test']);
-});
+exports.add = add;

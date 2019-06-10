@@ -13,18 +13,25 @@ module.exports = postcss.plugin('postcss-group', function (options) {
 
         css.walkRules(function (rule) {
             console.log(rule)
+            console.log('------');
             rule.each(function(decl) {
 
                 var prop = decl.prop;
+                var propValue = decl.value.split(" ");
 
                 if (!PROPS.hasOwnProperty(prop)) return;
 
                 var properties = PROPS[prop];
 
+                var propertiesLenght = properties.lenght;
+                var propValueLenght = propValue.lenght;
+                if (properties.lenght > propValueLenght) {
+
+                }
                 properties.forEach(function (property, index) {
                     decl.cloneBefore({
-                        prop: properties[index],
-                        value: decl.value
+                      prop: properties[index],
+                      value: propValue[index]
                     });
                 });
 
