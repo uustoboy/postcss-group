@@ -4,14 +4,6 @@ var postcss = require("postcss");
 
 var plugin = require("./index");
 
-
-gulp.task('test', function (done) {
-    var mocha = require('gulp-mocha');
-    return gulp.src('test/*.js', { read: false })
-        .pipe(mocha()).on('error', done);
-});
-
-
 function add() {
     postcss([plugin({
     	'az': ['azimuth','aa']
@@ -25,7 +17,7 @@ function add() {
 
 function test(){
 	var mocha = require('gulp-mocha');
-	return gulp.src('test/*.js', { read: false })
+	return src('test/*.js', { read: false })
         .pipe(mocha()).on('error', done);
 }
 

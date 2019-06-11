@@ -5,7 +5,6 @@ var plugin = require('../');
 
 var test = function (input, output, opts, done) {
     postcss([ plugin(opts) ]).process(input).then(function (result) {
-
         expect(result.css).to.equal(output);
         expect(result.warnings()).to.be.empty;
         done();
