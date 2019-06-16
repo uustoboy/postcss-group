@@ -1,25 +1,24 @@
-const { src, dest, parallel } = require("gulp");
+const { src, series, watch, task } = require('gulp');
 
-var postcss = require("postcss");
+const files = ['index.js', 'test/*.js', 'gulpfile.js'];
 
-var plugin = require("./index");
-
-function add() {
-    postcss([plugin({
-    	'az': ['azimuth','aa']
-    })])
-      .process("h1 { flcb:20px 20px #ccc; }")
-      .then(function(result) {
-        console.log(result);
-      })
-      .catch(function(error) {});
+const lint = (done) => {
+    var eslint = require('gulp-eslint');
+    return src(files).pipe(eslint())
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError()).on('error', done);
 }
 
-function test(){
-	var mocha = require('gulp-mocha');
-	return src('test/*.js', { read: false })
-        .pipe(mocha()).on('error', done);
+const test = (done) => {
+    var mocha = require('gulp-mocha');
+    return src('test/*.js', { read: false })
+        .pipe(mocha())
+        .on('error', done);
 }
 
 exports.test = test;
-exports.add = add;
+exports.lint = lint;
+exports.default = series(lint, test);
+
+watch(files, task('default'));
