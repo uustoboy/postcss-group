@@ -1,4 +1,4 @@
-# PostCSS Group 
+# PostCSS Group
 > shout to [johnie](https://github.com/johnie);<br/>
 
 > 对[postcss-crip](https://www.npmjs.com/package/postcss-crip)的延伸添加了组合简写;
@@ -43,7 +43,7 @@ var options = {
   'abc': ['a','b','c']
 }
 
-var output = postcss(crip(options))
+var output = postcss(group(options))
   .process(css)
   .css;
 ```
@@ -51,15 +51,15 @@ var output = postcss(crip(options))
 **input.css**
 
 ```css
-td { 
-  abc: a b c;  
+td {
+  abc: a b c;
 }
 ```
 
 **output.css**
 
 ```css
-td { 
+td {
   a: a;
   b: b;
   c: c;
